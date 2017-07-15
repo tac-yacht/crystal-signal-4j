@@ -1,0 +1,25 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "crystal-signal"
+paths:
+  /ctrl: 
+    get:
+      parameters: 
+      - in: query
+        name: "color"
+        required: false
+        type: array
+        collectionFormat: csv
+        items:
+          type: number
+          minimum: 0
+          maximum: 255
+        description: "LEDのRGB値を、それぞれ0から255の範囲で指定します。"
+      responses:
+        200:
+          description: "OK"
+externalDocs:
+  description: "original api doc"
+  url: "https://github.com/infiniteloop-inc/crystal-signal#api%E3%81%8B%E3%82%89%E3%81%AE%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"
