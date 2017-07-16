@@ -2,9 +2,13 @@ package com.iyher.crystalsignal4j.api.ctrl;
 
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import com.iyher.crystalsignal4j.Request;
 import com.iyher.crystalsignal4j.api.ctrl.enums.Mode;
@@ -99,7 +103,7 @@ public class BlinkRequest implements Request {
 	}
 
 	@Override
-	public String getQueryString() {
+	public List<NameValuePair> getQueryParams() {
 		return new HashMap<String, Object>(){{
 			put(key.color.name(), new StringJoiner(COLOR_SEPARATOR)
 				.add(String.valueOf(red))
@@ -116,7 +120,7 @@ public class BlinkRequest implements Request {
 				put(key.repeat.name(), repeat);
 			});
 		}}.entrySet().stream()
-		.map(entry -> entry.getKey() + KV_SEPARATOR + String.valueOf(entry.getValue()))
-		.collect(Collectors.joining(PAIR_DELIMITER));
+		.map(entry -> new BasicNameValuePair(entry.getKey(), String.valueOf(entry.getValue())))
+		.collect(Collectors.toList());
 	}
 }

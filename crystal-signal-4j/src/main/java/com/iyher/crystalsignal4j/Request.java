@@ -1,16 +1,14 @@
 package com.iyher.crystalsignal4j;
 
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+
 public interface Request {
 
-	/** キーとその値のペアが複数あるときのデリミター */
-	public static final String PAIR_DELIMITER = "&";
-
-	/** キーと値のセパレーター */
-	public static final String KV_SEPARATOR = "=";
-
 	/**
-	 * クエリストリングを取得します。
+	 * クエリを取得します。
 	 * @return
 	 */
-	String getQueryString();
+	List<NameValuePair> getQueryParams();
 }

@@ -1,5 +1,11 @@
 package com.iyher.crystalsignal4j.api.ctrl;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import com.iyher.crystalsignal4j.Request;
 import com.iyher.crystalsignal4j.api.ctrl.enums.Json;
 
@@ -28,8 +34,8 @@ public class JsonRequest implements Request {
 
 	/** {@inheritDoc}*/
 	@Override
-	public String getQueryString() {
-		return key + KV_SEPARATOR + json.getValue();
+	public List<NameValuePair> getQueryParams() {
+		return Collections.singletonList(new BasicNameValuePair(key,String.valueOf(json.getValue())));
 	}
 
 }
